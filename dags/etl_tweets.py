@@ -27,14 +27,26 @@ def sentiment_global(**kwargs):
     df = pd.read_csv("/opt/airflow/data/transformed.csv")
     cal=pd.DataFrame({
         "moyen_positive":[(df["airline_sentiment"]=="positive").sum()/len(df)],
-        "moyen_negative" :[(df["airline_sentiment"]=="negative").sum()/len(df)]
+        "moyen_negative" :[(df["airline_sentiment"]=="negative").sum()/len(df)],
+        "moyen_neutre" :[(df["airline_sentiment"]=="neutral").sum()/len(df)]
+
         })
     cal.to_csv("/opt/airflow/data/cal.csv", index=False)
-
 def load(**kwargs):
+    # Charger les tweets transformés
     df = pd.read_csv("/opt/airflow/data/transformed.csv")
+
+    # Charger les stats calculées
+    cal = pd.read_csv("/opt/airflow/data/cal.csv")
+
+    # Connexion à PostgreSQL
     engine = create_engine(POSTGRES_CONN_STR)
+
+    # Charger dans la table des tweets nettoyés
     df.to_sql("tweets_clean", engine, if_exists="append", index=False)
+
+    # Charger dans la table des statistiques
+    cal.to_sql("statistique", engine, if_exists="append", index=False)
 
 with DAG(
     dag_id="etl_tweets",
