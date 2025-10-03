@@ -1,0 +1,14 @@
+[2025-10-03T13:02:38.232+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_tweets.extract manual__2025-10-03T13:02:33.009346+00:00 [queued]>
+[2025-10-03T13:02:38.259+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_tweets.extract manual__2025-10-03T13:02:33.009346+00:00 [queued]>
+[2025-10-03T13:02:38.260+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2025-10-03T13:02:38.308+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): extract> on 2025-10-03 13:02:33.009346+00:00
+[2025-10-03T13:02:38.318+0000] {standard_task_runner.py:57} INFO - Started process 197 to run task
+[2025-10-03T13:02:38.323+0000] {standard_task_runner.py:84} INFO - Running: ['airflow', 'tasks', 'run', 'etl_tweets', 'extract', 'manual__2025-10-03T13:02:33.009346+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/etl_tweets.py', '--cfg-path', '/tmp/tmp4tpfpaoe']
+[2025-10-03T13:02:38.328+0000] {standard_task_runner.py:85} INFO - Job 43: Subtask extract
+[2025-10-03T13:02:38.401+0000] {logging_mixin.py:151} WARNING - /home/airflow/.local/lib/python3.8/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-10-03T13:02:38.500+0000] {task_command.py:415} INFO - Running <TaskInstance: etl_tweets.extract manual__2025-10-03T13:02:33.009346+00:00 [running]> on host c2118f417f29
+[2025-10-03T13:02:38.653+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='etl_tweets' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2025-10-03T13:02:33.009346+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-03T13:02:33.009346+00:00'
+[2025-10-03T13:02:39.108+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-10-03T13:02:39.127+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=etl_tweets, task_id=extract, execution_date=20251003T130233, start_date=20251003T130238, end_date=20251003T130239
+[2025-10-03T13:02:39.164+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-10-03T13:02:39.205+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

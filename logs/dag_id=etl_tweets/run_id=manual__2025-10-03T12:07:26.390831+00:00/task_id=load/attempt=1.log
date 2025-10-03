@@ -1,0 +1,77 @@
+[2025-10-03T12:07:38.885+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_tweets.load manual__2025-10-03T12:07:26.390831+00:00 [queued]>
+[2025-10-03T12:07:38.905+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_tweets.load manual__2025-10-03T12:07:26.390831+00:00 [queued]>
+[2025-10-03T12:07:38.905+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2025-10-03T12:07:38.930+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): load> on 2025-10-03 12:07:26.390831+00:00
+[2025-10-03T12:07:38.941+0000] {standard_task_runner.py:57} INFO - Started process 204 to run task
+[2025-10-03T12:07:38.947+0000] {standard_task_runner.py:84} INFO - Running: ['airflow', 'tasks', 'run', 'etl_tweets', 'load', 'manual__2025-10-03T12:07:26.390831+00:00', '--job-id', '25', '--raw', '--subdir', 'DAGS_FOLDER/etl_tweets.py', '--cfg-path', '/tmp/tmpvl74_dlb']
+[2025-10-03T12:07:38.954+0000] {standard_task_runner.py:85} INFO - Job 25: Subtask load
+[2025-10-03T12:07:39.005+0000] {logging_mixin.py:151} WARNING - /home/airflow/.local/lib/python3.8/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-10-03T12:07:39.094+0000] {task_command.py:415} INFO - Running <TaskInstance: etl_tweets.load manual__2025-10-03T12:07:26.390831+00:00 [running]> on host 49f24dd9f1a8
+[2025-10-03T12:07:39.410+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='etl_tweets' AIRFLOW_CTX_TASK_ID='load' AIRFLOW_CTX_EXECUTION_DATE='2025-10-03T12:07:26.390831+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-03T12:07:26.390831+00:00'
+[2025-10-03T12:07:40.996+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column "moyen_neutre" of relation "statistique" does not exist
+LINE 1: ...INTO statistique (moyen_positive, moyen_negative, moyen_neut...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/etl_tweets.py", line 66, in load
+    cal.to_sql("statistique", engine, if_exists="append", index=False)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/generic.py", line 2878, in to_sql
+    return sql.to_sql(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 769, in to_sql
+    return pandas_sql.to_sql(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 1920, in to_sql
+    total_inserted = sql_engine.insert_records(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 1470, in insert_records
+    raise err
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 1461, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 1023, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 929, in _execute_insert
+    result = conn.execute(self.table.insert(), data)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1385, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "moyen_neutre" of relation "statistique" does not exist
+LINE 1: ...INTO statistique (moyen_positive, moyen_negative, moyen_neut...
+                                                             ^
+
+[SQL: INSERT INTO statistique (moyen_positive, moyen_negative, moyen_neutre) VALUES (%(moyen_positive)s, %(moyen_negative)s, %(moyen_neutre)s)]
+[parameters: {'moyen_positive': 0.1614071038251366, 'moyen_negative': 0.6269125683060109, 'moyen_neutre': 0.2116803278688524}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+[2025-10-03T12:07:41.020+0000] {taskinstance.py:1398} INFO - Marking task as FAILED. dag_id=etl_tweets, task_id=load, execution_date=20251003T120726, start_date=20251003T120738, end_date=20251003T120741
+[2025-10-03T12:07:41.236+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 25 for task load ((psycopg2.errors.UndefinedColumn) column "moyen_neutre" of relation "statistique" does not exist
+LINE 1: ...INTO statistique (moyen_positive, moyen_negative, moyen_neut...
+                                                             ^
+
+[SQL: INSERT INTO statistique (moyen_positive, moyen_negative, moyen_neutre) VALUES (%(moyen_positive)s, %(moyen_negative)s, %(moyen_neutre)s)]
+[parameters: {'moyen_positive': 0.1614071038251366, 'moyen_negative': 0.6269125683060109, 'moyen_neutre': 0.2116803278688524}]
+(Background on this error at: https://sqlalche.me/e/14/f405); 204)
+[2025-10-03T12:07:41.265+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-10-03T12:07:41.298+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,15 @@
+[2025-10-03T13:02:47.040+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_tweets.map_tweets_world manual__2025-10-03T13:02:33.009346+00:00 [queued]>
+[2025-10-03T13:02:47.063+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_tweets.map_tweets_world manual__2025-10-03T13:02:33.009346+00:00 [queued]>
+[2025-10-03T13:02:47.067+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2025-10-03T13:02:47.114+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): map_tweets_world> on 2025-10-03 13:02:33.009346+00:00
+[2025-10-03T13:02:47.131+0000] {standard_task_runner.py:57} INFO - Started process 215 to run task
+[2025-10-03T13:02:47.140+0000] {standard_task_runner.py:84} INFO - Running: ['airflow', 'tasks', 'run', 'etl_tweets', 'map_tweets_world', 'manual__2025-10-03T13:02:33.009346+00:00', '--job-id', '47', '--raw', '--subdir', 'DAGS_FOLDER/etl_tweets.py', '--cfg-path', '/tmp/tmpmeis1po8']
+[2025-10-03T13:02:47.151+0000] {standard_task_runner.py:85} INFO - Job 47: Subtask map_tweets_world
+[2025-10-03T13:02:47.213+0000] {logging_mixin.py:151} WARNING - /home/airflow/.local/lib/python3.8/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-10-03T13:02:47.373+0000] {task_command.py:415} INFO - Running <TaskInstance: etl_tweets.map_tweets_world manual__2025-10-03T13:02:33.009346+00:00 [running]> on host c2118f417f29
+[2025-10-03T13:02:47.732+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='etl_tweets' AIRFLOW_CTX_TASK_ID='map_tweets_world' AIRFLOW_CTX_EXECUTION_DATE='2025-10-03T13:02:33.009346+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-03T13:02:33.009346+00:00'
+[2025-10-03T13:02:51.037+0000] {logging_mixin.py:151} INFO - 🌍 Carte du monde sauvegardée dans /opt/airflow/data/tweet_map_world.html
+[2025-10-03T13:02:51.040+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-10-03T13:02:51.061+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=etl_tweets, task_id=map_tweets_world, execution_date=20251003T130233, start_date=20251003T130247, end_date=20251003T130251
+[2025-10-03T13:02:51.128+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-10-03T13:02:51.182+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
